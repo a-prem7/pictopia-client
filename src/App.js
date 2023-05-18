@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
 
-        <Container>
+        <Container sx={{ p: 1 }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
