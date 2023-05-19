@@ -20,7 +20,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     console.log(user);
-    const res = await fetch("http://localhost:7000/api/user/register", {
+    const res = await fetch("http://localhost:4000/backend/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
