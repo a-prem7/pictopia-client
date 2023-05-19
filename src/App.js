@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import { Container } from "@mui/material";
 import "./App.css";
 
+export const AuthContext = createContext();
+
 function App() {
   return (
     <div>
