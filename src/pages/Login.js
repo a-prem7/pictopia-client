@@ -1,3 +1,4 @@
+import React, { useContext, useState } from "react";
 import {
   Card,
   CardContent,
@@ -5,8 +6,39 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../App";
 
-function Login() {
+const Login = () => {
+  const [user, setUser] = useState({ email: "", password: "" });
+  const navigator = useNavigate();
+  const { setRefresh } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    console.log(user);
+    const res = await fetch("http://localhost:7000/api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      localStorage.setItem("token", data.token);
+      setRefresh(true);
+      navigator("/");
+    } else {
+      console.log(data);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -49,6 +81,6 @@ function Login() {
       </Button>
     </Card>
   );
-}
+};
 
 export default Login;
