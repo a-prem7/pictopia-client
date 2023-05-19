@@ -1,7 +1,12 @@
 import React from "react";
+import DisplayPost from "../components/DisplayPost";
 
-function Home() {
-  return <div>Home</div>;
-}
+const Home = () => {
+  return (
+    <div>
+      <DisplayPost />
+    </div>
+  );
+};
 
 export default Home;
